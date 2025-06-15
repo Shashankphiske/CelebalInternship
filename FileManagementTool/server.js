@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
     res.setHeader("Content-type", "text/plain");
 
     if(pathname == "/createFile" && req.method == "GET"){
-        const fileName = query.name;
+        const fileName = query.fileName;
         const content = query.content;
         const filePath = path.join(__dirname, fileName);
 
@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
 
         res.end("success "+ content);
     }else if(pathname == "/readFile" && req.method == "GET"){
-        const fileName = query.name;
+        const fileName = query.fileName;
         const filePath = path.join(__dirname, fileName);
 
         fs.readFile(filePath, 'utf8', (err, data) => {
