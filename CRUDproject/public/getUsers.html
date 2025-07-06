@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Users</title>
+</head>
+<body>
+  <h2>All Users</h2>
+  <button onclick="fetchUsers()">Load Users</button>
+  <ul id="userList"></ul>
+
+  <script>
+    async function fetchUsers() {
+      try {
+        const res = await fetch('/getUsers');
+        const data = await res.json();
+
+        const list = document.getElementById('userList');
+        list.innerHTML = '';
+
+        if (data.length === 0) {
+          list.innerHTML = '<li>No users found.</li>';
+          return;
+        }
+
+        data.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} - ${user.age}`;
+          list.appendChild(li);
+        });
+      } catch (err) {
+        console.error('Error fetching users:', err);
+        alert('Failed to load users');
+      }
+    }
+  </script>
+</body>
+</html>
