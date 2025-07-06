@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { userSchema } = require("./user");
+require("dotenv").config();
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-const uri = 'mongodb+srv://ssp:ssp0511@cluster0.wvb3x.mongodb.net/crudproject?retryWrites=true&w=majority&appName=Cluster0'
+const uri = process.env.uri
 
 
 const connectdb = async () => {
