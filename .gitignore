@@ -1,2 +1,4 @@
 /HelloWorldApp/node_modules
 /CRUDproject/node_modules
+/CRUDproject/.env
+/rest-api/node_modules
